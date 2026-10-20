@@ -1,6 +1,6 @@
 # 檔案權限
 
-## 查看權限
+## 查看權限1
 
 ```bash
 ls -l file         # 查看檔案權限
@@ -150,8 +150,8 @@ chmod -R 750 dir         # 整個目錄樹一起改
 
 ```bash
 sudo chown jumbo file            # 改擁有者
-sudo chown jumbo:admins file     # 同時改擁有者和群組
-sudo chown :admins file          # 只改群組
+sudo chown jumbo:群組名稱 file     # 同時改擁有者和群組
+sudo chown :群組名稱 file          # 只改群組
 sudo chown -R jumbo dir          # 整個目錄樹一起改
 chgrp admins file                # 只改群組的另一種寫法
 ```
@@ -228,3 +228,4 @@ umask 007          # 暫時修改，只影響目前的 shell
 
 - 系統預設值在 `/etc/profile` 和 `/etc/bashrc`
 - 改完要重新登入才會生效
+
