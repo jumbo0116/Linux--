@@ -224,9 +224,9 @@ chmod 1777 /pub          # Sticky + rwxrwxrwx（跟 /tmp 一樣）
 **常見用法：團隊共用目錄**
 
 ```bash
-sudo mkdir /shared
-sudo chgrp project /shared       # 群組設成團隊群組
-sudo chmod 2770 /shared          # SGID：新檔案都屬於 project 群組；其他人進不來
+sudo mkdir /資料夾名稱
+sudo chgrp 群組名稱 /資料夾名稱       # 群組設成團隊群組
+sudo chmod 2770 /資料夾名稱          # SGID：新檔案都屬於該群組；其他人進不來
 ```
 
 ## umask：新檔案的預設權限
