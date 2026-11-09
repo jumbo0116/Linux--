@@ -1,18 +1,5 @@
 # Linux 基礎
 
-## SSH 連線
-
-從 Windows 的 CMD / PowerShell 連到 Linux：
-
-```bash
-ssh 使用者名稱@IP
-ssh 使用者名稱@IP -p 2222   # SSH 不是預設 22 port 時
-```
-
-- 第一次連線會問是否信任主機，輸入 `yes`
-- 輸入密碼時畫面不會顯示字元（正常）
-- `exit` 離開連線
-
 ## 路徑
 
 ### 絕對路徑
