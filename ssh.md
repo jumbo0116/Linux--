@@ -9,6 +9,7 @@ ssh 使用者名稱@IP
 ssh 使用者名稱@IP -p 2222   # SSH 不是預設 22 port 時
 ```
 
+- **<span style="color:#e5c07b">2222</span> 只是範例**，要換成伺服器 `sshd_config` 裡設定的 port
 - 第一次連線會問是否信任主機，輸入 `yes`
 - 輸入密碼時畫面不會顯示字元（正常）
 - `exit` 離開連線
@@ -16,9 +17,13 @@ ssh 使用者名稱@IP -p 2222   # SSH 不是預設 22 port 時
 **其他寫法**
 
 ```bash
-ssh remotehost                    # 沒寫使用者，就用跟本機相同的帳號名稱
-ssh user02@remotehost hostname    # 不登入，只在遠端執行一個指令，結果顯示在本機
+ssh IP                       # 沒寫使用者，就用「本機目前的使用者名稱」登入
+ssh 使用者名稱@IP hostname    # 不停留在遠端，只執行一個指令，結果顯示在本機後就回來
 ```
+
+- 在 Windows 上執行 `ssh IP`，會用 Windows 的使用者名稱（例如 `user01`）登入，Linux 上沒有這個帳號就會失敗，所以**建議一律寫 `使用者名稱@IP`**
+- 第二行的 `hostname` 可以換成任何指令，例如 `ssh jumbo@IP uptime`
+- `IP` 也可以換成**主機名稱**，但電腦要查得到名稱對應的 IP（`/etc/hosts`、DNS 或 `~/.ssh/config`），不然會出現 `Could not resolve hostname`
 
 **查看誰登入了**
 
