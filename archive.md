@@ -105,6 +105,17 @@ tar -czf  /backup/etc.tar.gz  /etc
 
 遠端路徑寫成 **`使用者@主機:路徑`**，**有冒號 `:` 的那一邊就是遠端**：
 
+| 冒號的位置 | 方向 |
+|------|------|
+| 在**後面**（目的地） | **上傳**：本機 → 遠端 |
+| 在**前面**（來源） | **下載**：遠端 → 本機 |
+
+### 上傳：本機 → 遠端
+
+```bash
+scp /etc/hosts jumbo@192.168.151.100:/home/jumbo
+```
+
 ```
 scp   /etc/hosts   jumbo@192.168.151.100:/home/jumbo
  │        │          │         │            │
@@ -115,20 +126,34 @@ scp   /etc/hosts   jumbo@192.168.151.100:/home/jumbo
  └─ 指令：透過 SSH 複製檔案
 ```
 
+### 下載：遠端 → 本機
+
 ```bash
-# 本機 → 遠端
-scp /etc/hosts jumbo@192.168.151.100:/home/jumbo
-
-# 遠端 → 本機
 scp jumbo@192.168.151.100:/etc/hostname /tmp
-
-# 整個資料夾要加 -r
-scp -r jumbo@192.168.151.100:/var/log /tmp
-
-# 指定 port 是大寫 -P（ssh 是小寫 -p）
-scp -P 2222 a.txt jumbo@192.168.151.100:~
 ```
 
+```
+scp   jumbo@192.168.151.100:/etc/hostname   /tmp
+ │      │          │             │            │
+ │      │          │             │            └─ 目的地：本機的 /tmp 資料夾
+ │      │          │             └─ 來源：遠端的檔案
+ │      │          └─ 遠端主機的 IP
+ │      └─ 用 jumbo 這個帳號登入
+ └─ 指令：透過 SSH 複製檔案
+```
+
+- 在 Windows 上執行時，目的地要寫 Windows 的路徑，例如 `C:\Users\user01\Desktop`
+
+### 其他用法
+
+```bash
+scp -r jumbo@192.168.151.100:/var/log /tmp       # 整個資料夾要加 -r
+scp -P 2222 a.txt jumbo@192.168.151.100:~        # 指定 port 是大寫 -P（ssh 是小寫 -p）
+scp a.txt jumbo@192.168.151.100:~                # ~ 代表遠端使用者的家目錄
+scp a.txt jumbo@192.168.151.100:/tmp/b.txt       # 複製過去時順便改名
+```
+
+- **冒號一定要寫**：漏掉的話，會在本機建立一個名叫 `jumbo@192.168.151.100` 的檔案，沒有傳到遠端
 - Windows 也有內建 `scp`，用法一樣
 
 ## sftp：互動式傳檔
